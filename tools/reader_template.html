@@ -1,0 +1,164 @@
+<title>腐らない森の菌糸体</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600&family=Shippori+Mincho+B1:wght@700;800&family=Zen+Kaku+Gothic+New:wght@400;700&display=swap">
+<style>
+/* layout: one reading column (~36字) under a slim sticky bar; the index is a ledger of episodes with their 夜露 and 先っぽ */
+:root{
+  --bg:#ECEEE8; --surface:#F6F7F2; --fg:#1F221E; --muted:#5F665D; --line:#D2D7CC;
+  --accent:#3B5C9C; --accent-soft:#DCE3F0;
+  --f-body:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif;
+  --f-disp:"Shippori Mincho B1","Shippori Mincho","Hiragino Mincho ProN",serif;
+  --f-ui:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",system-ui,sans-serif;
+  --fs:1.06rem;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#111412; --surface:#181C19; --fg:#E1E5DD; --muted:#99A196; --line:#2B312C;
+  --accent:#93ADE6; --accent-soft:#1F2737; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#111412; --surface:#181C19; --fg:#E1E5DD; --muted:#99A196; --line:#2B312C;
+  --accent:#93ADE6; --accent-soft:#1F2737; color-scheme:dark}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-ui);line-height:1.7}
+a{color:var(--accent)}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+.bar-in{max-width:46rem;margin:0 auto;padding:.55rem 16px;display:flex;align-items:center;gap:.75rem}
+.brand{font-family:var(--f-disp);font-weight:800;font-size:1.02rem;letter-spacing:.04em;text-decoration:none;color:var(--fg);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;flex:1}
+.nav{display:flex;gap:.25rem;flex-wrap:wrap;justify-content:flex-end}
+.nav a{font-size:.82rem;text-decoration:none;color:var(--muted);padding:.2rem .5rem;border-radius:.3rem}
+.nav a[aria-current="page"]{color:var(--fg);background:var(--accent-soft)}
+main{max-width:46rem;margin:0 auto;padding:1.5rem 16px 4rem}
+.kicker{font-size:.75rem;letter-spacing:.12em;color:var(--muted)}
+h1,h2{font-family:var(--f-disp);font-weight:800;text-wrap:balance;letter-spacing:.02em}
+.hero{padding-block:1rem 1.6rem;border-bottom:1px solid var(--line)}
+.hero h1{font-size:clamp(1.9rem,7vw,2.8rem);line-height:1.25;margin:.2rem 0 .3rem}
+.hero .sub{font-family:var(--f-body);color:var(--muted);margin:0 0 1rem}
+.hero p.lead{font-family:var(--f-body);max-width:36em;margin:0 0 1.2rem}
+.cta{display:flex;gap:.6rem;flex-wrap:wrap}
+.btn{display:inline-block;padding:.55rem 1rem;border-radius:.35rem;text-decoration:none;font-size:.9rem;border:1px solid var(--line);color:var(--fg);background:var(--surface)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+.chapter{margin-top:2rem}
+.chapter h2{font-size:1.25rem;margin:0 0 .2rem}
+.chapter .q{color:var(--muted);font-size:.85rem;margin:0 0 .6rem}
+.eplist{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.eplist li{border-bottom:1px solid var(--line)}
+.eplist a{display:grid;grid-template-columns:3.2rem 1fr auto;gap:.6rem;align-items:baseline;padding:.6rem .1rem;text-decoration:none;color:var(--fg)}
+.eplist .no{font-size:.78rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.eplist .tt{font-family:var(--f-body);font-weight:600;min-width:0}
+.eplist .yo{font-size:.72rem;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+.eplist a.read .tt::after{content:"　しおり";font-family:var(--f-ui);font-size:.7rem;color:var(--accent);font-weight:400}
+.planned{margin-top:2rem;color:var(--muted);font-size:.85rem}
+.planned ul{padding-left:1.1rem;margin:.3rem 0}
+.ephead{padding-bottom:1rem;border-bottom:1px solid var(--line);margin-bottom:1.6rem}
+.ephead h1{font-size:clamp(1.5rem,5.5vw,2.1rem);line-height:1.35;margin:.2rem 0 .7rem}
+.meta{display:flex;flex-wrap:wrap;gap:.4rem 1.2rem;font-size:.78rem;color:var(--muted)}
+.meta b{font-weight:700;color:var(--fg);font-variant-numeric:tabular-nums}
+details.summ{margin-top:.9rem;font-size:.86rem;background:var(--surface);border:1px solid var(--line);border-radius:.35rem;padding:.5rem .8rem}
+details.summ summary{cursor:pointer;color:var(--muted)}
+details.summ p{font-family:var(--f-body);margin:.5rem 0 .2rem}
+.text{font-family:var(--f-body);font-size:var(--fs);line-height:2;max-width:36em}
+.text .blk{margin:0 0 1.15em}
+.text .blk p{margin:0}
+.text .star{text-align:center;color:var(--muted);letter-spacing:1em;margin:2em 0}
+.pager{display:grid;grid-template-columns:1fr auto 1fr;gap:.6rem;align-items:center;margin-top:2.5rem;padding-top:1rem;border-top:1px solid var(--line);font-size:.85rem}
+.pager a{text-decoration:none;min-width:0}
+.pager .nx{text-align:right}
+.pager small{display:block;color:var(--muted);font-size:.72rem}
+.pager span.t{font-family:var(--f-body)}
+.tools{display:flex;gap:.4rem;align-items:center;font-size:.78rem;color:var(--muted);margin-top:.8rem}
+.tools button{border:1px solid var(--line);background:var(--surface);border-radius:.3rem;padding:.15rem .55rem;cursor:pointer}
+.tools button[aria-pressed="true"]{border-color:var(--accent);color:var(--accent)}
+.doc{font-family:var(--f-body)}
+.doc h1{font-size:1.7rem;margin:.2rem 0 1rem}
+.doc h3{font-family:var(--f-disp);font-size:1.15rem;margin:2rem 0 .5rem;padding-top:1rem;border-top:1px solid var(--line)}
+.doc h4{font-family:var(--f-ui);font-size:.95rem;margin:1.4rem 0 .4rem}
+.doc p,.doc li{max-width:36em}
+.doc ul{padding-left:1.2rem}
+.tw{overflow-x:auto;margin:.6rem 0}
+table{border-collapse:collapse;font-family:var(--f-ui);font-size:.82rem}
+th,td{border-bottom:1px solid var(--line);padding:.35rem .6rem;text-align:left;vertical-align:top}
+th{color:var(--muted);font-weight:700;white-space:nowrap}
+.warn{font-family:var(--f-ui);font-size:.8rem;color:var(--muted);background:var(--surface);border:1px solid var(--line);border-radius:.35rem;padding:.5rem .8rem;margin-bottom:1rem}
+.gloss-nav{display:flex;flex-wrap:wrap;gap:.35rem;font-family:var(--f-ui);font-size:.8rem;margin-bottom:.5rem}
+.gloss-nav a{text-decoration:none;border:1px solid var(--line);border-radius:1rem;padding:.1rem .6rem;background:var(--surface)}
+@media (max-width:420px){.eplist a{grid-template-columns:2.7rem 1fr}.eplist .yo{grid-column:2}}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+</style>
+
+<header class="bar"><div class="bar-in">
+  <a class="brand" href="#home">腐らない森の菌糸体</a>
+  <nav class="nav" aria-label="ページ">
+    <a href="#home" data-v="home">目次</a>
+    <a href="#syn" data-v="syn">あらすじ</a>
+    <a href="#gloss" data-v="gloss">用語</a>
+    <a href="#myst" data-v="myst">謎</a>
+  </nav>
+</div></header>
+<main id="app"></main>
+
+<script id="data" type="application/json">__DATA__</script>
+<script>
+const D=JSON.parse(document.getElementById('data').textContent);
+const app=document.getElementById('app');
+const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const pad=n=>String(n).padStart(2,'0');
+const store={get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
+const CH={"第1章":["俺は何本あるのか","自分の体と、見えない放射"],"第2章":["腐らない森","分解者のいない森の生態と、どこまでが俺か"]};
+const sizes={'小':'0.98rem','中':'1.06rem','大':'1.2rem'};
+function applySize(){const s=store.get('fs')||'中';document.documentElement.style.setProperty('--fs',sizes[s]||sizes['中']);return s}
+applySize();
+function setNav(v){document.querySelectorAll('.nav a').forEach(a=>{if(a.dataset.v===v)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')})}
+function home(){
+  const last=parseInt(store.get('last')||'0',10);
+  const byCh={};D.eps.forEach(e=>(byCh[e.ch]=byCh[e.ch]||[]).push(e));
+  let h=`<section class="hero"><div class="kicker">連載小説　第1話〜第${D.eps.length}話</div>
+  <h1>腐らない森の菌糸体</h1>
+  <p class="sub">任期切れのポスドク、カビに転生して誰も読まない論文を書く</p>
+  <p class="lead">過労で倒れた菌類研究者は、目も耳もない菌糸体になっていた。分解する者がいなくなり、何も腐らなくなった世界で、自分の体だけを道具に、仮説と実験を回していく。</p>
+  <div class="cta">${last?`<a class="btn primary" href="#ep${pad(last)}">続きから読む（第${last}話）</a><a class="btn" href="#ep01">最初から読む</a>`:`<a class="btn primary" href="#ep01">第1話から読む</a>`}</div></section>`;
+  for(const ch of Object.keys(byCh)){
+    const [name,q]=CH[ch]||[ch,''];const list=byCh[ch];
+    h+=`<section class="chapter"><div class="kicker">${ch}　第${list[0].n}〜${list[list.length-1].n}話</div><h2>${name}</h2><p class="q">${q}</p><ul class="eplist">`;
+    for(const e of list)h+=`<li><a href="#ep${pad(e.n)}"${e.n===last?' class="read"':''}><span class="no">第${e.n}話</span><span class="tt">${esc(e.t)}</span><span class="yo">${esc(e.yo)} 夜露</span></a></li>`;
+    h+=`</ul></section>`;
+  }
+  h+=`<section class="planned"><div class="kicker">この先（予定）</div><ul><li>第3章　文字を食べる（26〜40話）</li><li>第4章　防疫官（41〜55話）</li><li>第5章　発酵という交渉（56〜70話）</li><li>第6章　旧文明の消毒（71〜85話）</li><li>第7章　眠る病原体（86〜100話）</li><li>第8章　世界を分解し直す（101〜130話）</li></ul></section>`;
+  app.innerHTML=h;setNav('home');
+}
+function ep(n){
+  const e=D.eps.find(x=>x.n===n);if(!e)return home();
+  store.set('last',String(n));
+  const pv=D.eps.find(x=>x.n===n-1),nx=D.eps.find(x=>x.n===n+1);
+  const cur=applySize();
+  const body=e.p.map(b=>b[0].trim()==='＊'?'<div class="star" aria-hidden="true">＊</div>':`<div class="blk">${b.map(l=>`<p>${esc(l)}</p>`).join('')}</div>`).join('');
+  const pager=`<nav class="pager" aria-label="前後の話">
+    <div>${pv?`<a href="#ep${pad(pv.n)}"><small>← 第${pv.n}話</small><span class="t">${esc(pv.t)}</span></a>`:''}</div>
+    <a href="#home">目次</a>
+    <div class="nx">${nx?`<a href="#ep${pad(nx.n)}"><small>第${nx.n}話 →</small><span class="t">${esc(nx.t)}</span></a>`:'<small>ここまで</small>'}</div></nav>`;
+  app.innerHTML=`<article><header class="ephead"><div class="kicker">${e.ch}　${(CH[e.ch]||[''])[0]}</div>
+    <h1>第${e.n}話　${esc(e.t)}</h1>
+    <div class="meta"><span>経過 <b>${esc(e.yo)}</b> 夜露</span><span>体 <b>${esc(e.tip)}</b></span></div>
+    <details class="summ"><summary>あらすじ（読み終えてから）</summary><p>${esc(e.s)}</p></details>
+    <div class="tools" role="group" aria-label="文字の大きさ">文字　${Object.keys(sizes).map(k=>`<button type="button" data-fs="${k}" aria-pressed="${k===cur}">${k}</button>`).join('')}</div>
+  </header><div class="text">${body}</div>${pager}</article>`;
+  app.querySelectorAll('[data-fs]').forEach(b=>b.addEventListener('click',()=>{store.set('fs',b.dataset.fs);const c=applySize();app.querySelectorAll('[data-fs]').forEach(x=>x.setAttribute('aria-pressed',String(x.dataset.fs===c)))}));
+  setNav('');window.scrollTo(0,0);
+}
+function doc(v){
+  let h='';
+  if(v==='syn')h=`<div class="doc"><div class="warn">第${D.eps.length}話までの内容をすべて含みます。</div>${D.syn.replace('<h3>','<h1>').replace('</h3>','</h1>')}</div>`;
+  if(v==='myst')h=`<div class="doc"><div class="warn">第${D.eps.length}話時点で分かったこと・仮説・未解決のまとめです。ネタバレを含みます。</div>${D.myst.replace('<h3>','<h1>').replace('</h3>','</h1>')}</div>`;
+  if(v==='gloss')h=`<div class="doc"><h1>用語・設定</h1><div class="warn">第${D.eps.length}話までの内容を含みます。</div><nav class="gloss-nav">${D.gloss.map((g,i)=>`<a href="#g${i}">${esc(g.k)}</a>`).join('')}</nav>${D.gloss.map((g,i)=>`<section id="g${i}">${g.h}</section>`).join('')}</div>`;
+  app.innerHTML=h;setNav(v);window.scrollTo(0,0);
+}
+function route(){
+  const h=location.hash.slice(1);
+  if(/^ep\d+$/.test(h))return ep(parseInt(h.slice(2),10));
+  if(['syn','gloss','myst'].includes(h))return doc(h);
+  if(/^g\d+$/.test(h)){if(!document.getElementById(h))doc('gloss');const el=document.getElementById(h);if(el)el.scrollIntoView();return}
+  home();
+}
+addEventListener('hashchange',route);route();
+</script>
